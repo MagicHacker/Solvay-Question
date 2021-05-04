@@ -95,8 +95,18 @@
     ]
   },
   "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.23.0",
+    "eslint-config-alloy": "^3.10.0",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-loader": "^4.0.2",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-react": "^7.23.1",
+    "husky": "^6.0.0",
     "less": "^4.1.1",
-    "less-loader": "^8.1.1"
+    "less-loader": "^8.1.1",
+    "lint-staged": "^10.5.4",
+    "prettier": "^2.2.1"
   },
   "jest": {
     "roots": [
@@ -151,6 +161,17 @@
   "babel": {
     "presets": [
       "react-app"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{js,json,css,jsx}": [
+      "eslint --fix",
+      "prettier --write"
     ]
   }
 }
