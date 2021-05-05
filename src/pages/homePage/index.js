@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Layout, Menu } from 'antd';
+import { Layout, Menu, Popover } from 'antd';
 import {
   UserOutlined,
   AppstoreFilled,
@@ -7,10 +7,18 @@ import {
   FileFilled,
   HighlightFilled,
   CodeSandboxCircleFilled,
+  GithubFilled,
+  LoginOutlined,
 } from '@ant-design/icons';
 import './index.less';
 
 const { Header, Sider, Content } = Layout;
+const content = (
+  <div style={{ cursor: 'pointer' }}>
+    <LoginOutlined />
+    <span>退出登录</span>
+  </div>
+);
 export default class HomePage extends Component {
   render() {
     return (
@@ -30,7 +38,12 @@ export default class HomePage extends Component {
             </Menu>
           </Sider>
           <Layout>
-            <Header className="homepage_header">xx</Header>
+            <Header className="homepage_header">
+              <Popover className="homepage_header_user" content={content}>
+                <GithubFilled />
+                <span>MagicHacker</span>
+              </Popover>
+            </Header>
             <Content className="homepage_content">aa</Content>
           </Layout>
         </Layout>
