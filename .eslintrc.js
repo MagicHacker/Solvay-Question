@@ -33,5 +33,6 @@ module.exports = {
     'prettier/prettier': 'error',
     complexity: 'off',
     'max-params': 'off',
+    'no-invalid-this': 'off',
   },
 };
