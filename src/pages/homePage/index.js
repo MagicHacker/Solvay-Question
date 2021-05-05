@@ -13,13 +13,15 @@ import {
 import './index.less';
 
 const { Header, Sider, Content } = Layout;
-const content = (
-  <div style={{ cursor: 'pointer' }}>
-    <LoginOutlined />
-    <span>退出登录</span>
-  </div>
-);
 export default class HomePage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+  logOut = () => {
+    const { history } = this.props;
+    history.replace({ pathname: '/login' });
+  };
   render() {
     return (
       <div className="homepage_wrapper">
@@ -39,7 +41,15 @@ export default class HomePage extends Component {
           </Sider>
           <Layout>
             <Header className="homepage_header">
-              <Popover className="homepage_header_user" content={content}>
+              <Popover
+                className="homepage_header_user"
+                content={
+                  <div style={{ cursor: 'pointer' }} onClick={this.logOut}>
+                    <LoginOutlined />
+                    <span>退出登录</span>
+                  </div>
+                }
+              >
                 <GithubFilled />
                 <span>MagicHacker</span>
               </Popover>
