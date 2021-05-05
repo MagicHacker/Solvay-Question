@@ -10,7 +10,6 @@ class Login extends Component {
     };
   }
   login = () => {
-    console.warn('登录了', this.state);
     const { history } = this.props;
     history.push({ pathname: '/homepage' });
     message.success('登录成功!');
