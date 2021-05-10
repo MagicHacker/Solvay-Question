@@ -33,8 +33,10 @@ export default class UserManage extends Component {
                 <Radio value="">未报名</Radio>
               </Radio.Group>
             </Form.Item>
-            <Form.Item style={{ marginTop: 10 }}>
-              <Button type="primary">查询</Button>
+            <Form.Item style={{ marginTop: 10 }} wrapperCol={{ span: 24 }}>
+              <Button type="primary" htmlType="submit" style={{ marginRight: 8 }}>
+                查询
+              </Button>
               <Button>重置</Button>
             </Form.Item>
           </Form>
