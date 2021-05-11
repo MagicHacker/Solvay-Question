@@ -12,7 +12,7 @@ export default class KnowledgeManage extends Component {
         courseName: '马克思主义',
         knowledgeCount: 32,
         admin: '管理员',
-        courseId: '45678',
+        courseCode: '45678',
         operationTime: '2019-5-10  18:00:00',
       },
       {
@@ -20,15 +20,15 @@ export default class KnowledgeManage extends Component {
         courseName: '毛概',
         knowledgeCount: 42,
         admin: '管理员',
-        courseId: '45678',
+        courseCode: '45678',
         operationTime: '2019-5-10  18:00:00',
       },
     ];
     this.columns = [
       {
         title: '课程编码',
-        dataIndex: 'courseId',
-        key: 'courseId',
+        dataIndex: 'courseCode',
+        key: 'courseCode',
         align: 'center',
       },
       {
