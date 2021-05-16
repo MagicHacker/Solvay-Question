@@ -104,10 +104,17 @@ export default class UserManage extends Component {
         title: '操作',
         key: 'action',
         align: 'center',
-        render: () => {
+        render: (text, record) => {
           return (
             <Space>
-              <Button size={{ size: 'small' }} type="text" danger onClick={this.checkUser}>
+              <Button
+                size={{ size: 'small' }}
+                type="text"
+                danger
+                onClick={() => {
+                  this.checkUser(record);
+                }}
+              >
                 查看
               </Button>
               <Button size={{ size: 'small' }} type="text" danger onClick={this.addUser}>
@@ -218,9 +225,20 @@ export default class UserManage extends Component {
       isModalVisible: false,
     });
   };
-  checkUser = () => {
+  checkUser = (record) => {
     const { history } = this.props;
-    history.push({ pathname: '/homepage/userCheck' });
+    const { userName, nickName, sex, phone, area, registerTime } = record;
+    history.push({
+      pathname: '/homepage/userCheck',
+      state: {
+        userName,
+        nickName,
+        sex,
+        phone,
+        area,
+        registerTime,
+      },
+    });
   };
   render() {
     const {
