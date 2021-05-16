@@ -11,7 +11,7 @@ class Login extends Component {
   }
   login = () => {
     const { history } = this.props;
-    history.push({ pathname: '/homepage' });
+    history.push({ pathname: '/homepage/userManage' });
     message.success('登录成功!');
   };
   handleChange = (e) => {
