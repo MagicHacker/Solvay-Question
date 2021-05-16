@@ -45,7 +45,6 @@ export default class UserManage extends Component {
         loginTime: '2021-10-21',
       },
     ];
-
     this.columns = [
       {
         title: 'ID',
@@ -108,7 +107,7 @@ export default class UserManage extends Component {
         render: () => {
           return (
             <Space>
-              <Button size={{ size: 'small' }} type="text" danger>
+              <Button size={{ size: 'small' }} type="text" danger onClick={this.checkUser}>
                 查看
               </Button>
               <Button size={{ size: 'small' }} type="text" danger onClick={this.addUser}>
@@ -218,6 +217,10 @@ export default class UserManage extends Component {
     this.setState({
       isModalVisible: false,
     });
+  };
+  checkUser = () => {
+    const { history } = this.props;
+    history.push({ pathname: '/homepage/userCheck' });
   };
   render() {
     const {

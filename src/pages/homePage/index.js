@@ -16,6 +16,7 @@ import KnowledgeManage from '../knowledgeManage';
 import QuestionManage from '../questionManage';
 import StudentError from '../studentError';
 import UserManage from '../userManage';
+import UserCheck from '../userManage/userCheck';
 import './index.less';
 
 const { Header, Sider, Content } = Layout;
@@ -73,6 +74,7 @@ export default class HomePage extends Component {
             <Content className="homepage_content">
               <Switch>
                 <Route path="/homepage/userManage" component={UserManage} />
+                <Route path="/homepage/userCheck" component={UserCheck} />
                 <Route path="/homepage/questionManage" component={QuestionManage} />
                 <Route path="/homepage/chapterManage" component={ChapterManage} />
                 <Route path="/homepage/knowledgeManage" component={KnowledgeManage} />
