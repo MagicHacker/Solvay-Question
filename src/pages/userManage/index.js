@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, DatePicker, Input, Radio, Button, Table, Space } from 'antd';
+import { Form, DatePicker, Input, Radio, Button, Table, Space, Modal } from 'antd';
 import './index.less';
 export default class UserManage extends Component {
   constructor(props) {
@@ -11,6 +11,13 @@ export default class UserManage extends Component {
       phone: '',
       nickName: '',
       userIdentity: 0,
+      isModalVisible: false,
+      addUserName: '',
+      addNickName: '',
+      addPhone: '',
+      gender: 'male',
+      address: '',
+      addUserIdentity: 0,
     };
     this.dataSource = [
       {
@@ -104,7 +111,7 @@ export default class UserManage extends Component {
               <Button size={{ size: 'small' }} type="text" danger>
                 查看
               </Button>
-              <Button size={{ size: 'small' }} type="text" danger>
+              <Button size={{ size: 'small' }} type="text" danger onClick={this.addUser}>
                 添加
               </Button>
             </Space>
@@ -129,10 +136,22 @@ export default class UserManage extends Component {
       userName: target.value,
     });
   };
+  changeAddUserName = (e) => {
+    const { target } = e;
+    this.setState({
+      addUserName: target.value,
+    });
+  };
   changeNickName = (e) => {
     const { target } = e;
     this.setState({
       nickName: target.value,
+    });
+  };
+  changeAddNickName = (e) => {
+    const { target } = e;
+    this.setState({
+      addNickName: target.value,
     });
   };
   changePhone = (e) => {
@@ -141,10 +160,34 @@ export default class UserManage extends Component {
       phone: target.value,
     });
   };
+  changeAddPhone = (e) => {
+    const { target } = e;
+    this.setState({
+      addPhone: target.value,
+    });
+  };
   changeUserIdentity = (e) => {
     const { target } = e;
     this.setState({
       userIdentity: target.value,
+    });
+  };
+  changeAddUserIdentity = (e) => {
+    const { target } = e;
+    this.setState({
+      addUserIdentity: target.value,
+    });
+  };
+  changeGender = (e) => {
+    const { target } = e;
+    this.setState({
+      gender: target.value,
+    });
+  };
+  changeAddress = (e) => {
+    const { target } = e;
+    this.setState({
+      address: target.value,
     });
   };
   search = () => {
@@ -161,8 +204,35 @@ export default class UserManage extends Component {
       loginTime: '',
     });
   };
+  addUser = () => {
+    this.setState({
+      isModalVisible: true,
+    });
+  };
+  confirm = () => {
+    this.setState({
+      isModalVisible: false,
+    });
+  };
+  handleCancel = () => {
+    this.setState({
+      isModalVisible: false,
+    });
+  };
   render() {
-    const { userName, phone, nickName, userIdentity } = this.state;
+    const {
+      userName,
+      phone,
+      nickName,
+      userIdentity,
+      isModalVisible,
+      addUserName,
+      addNickName,
+      addPhone,
+      gender,
+      address,
+      addUserIdentity,
+    } = this.state;
     return (
       <div className="user_manage_wrapper">
         <div className="user_manage_title">用户管理</div>
@@ -200,6 +270,34 @@ export default class UserManage extends Component {
           </Form>
         </div>
         <Table className="user_manage_table" dataSource={this.dataSource} columns={this.columns} />
+        <Modal title="添加用户" visible={isModalVisible} onOk={this.confirm} onCancel={this.handleCancel}>
+          <Form>
+            <Form.Item label="姓名:">
+              <Input placeholder="请输入姓名" value={addUserName} onChange={this.changeAddUserName} />
+            </Form.Item>
+            <Form.Item label="昵称:">
+              <Input placeholder="请输入昵称" value={addNickName} onChange={this.changeAddNickName} />
+            </Form.Item>
+            <Form.Item label="手机号:">
+              <Input placeholder="请输入手机号" value={addPhone} onChange={this.changeAddPhone} />
+            </Form.Item>
+            <Form.Item label="地区:">
+              <Input placeholder="请输入地区" value={address} onChange={this.changeAddress} />
+            </Form.Item>
+            <Form.Item label="性别:">
+              <Radio.Group value={gender} onChange={this.changeGender}>
+                <Radio value="male">男</Radio>
+                <Radio value="female">女</Radio>
+              </Radio.Group>
+            </Form.Item>
+            <Form.Item label="用户身份:">
+              <Radio.Group value={addUserIdentity} onChange={this.changeAddUserIdentity}>
+                <Radio value={1}>已报名</Radio>
+                <Radio value={0}>未报名</Radio>
+              </Radio.Group>
+            </Form.Item>
+          </Form>
+        </Modal>
       </div>
     );
   }
