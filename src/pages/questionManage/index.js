@@ -5,7 +5,13 @@ const { RangePicker } = DatePicker;
 export default class QuestionManage extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      startTime: '',
+      endTime: '',
+      courseName: '',
+      courseCode: '',
+      rangePickerKey: '',
+    };
     this.dataSource = [
       {
         key: '1',
@@ -79,27 +85,57 @@ export default class QuestionManage extends Component {
       },
     ];
   }
+  changeTime = (date, dateString) => {
+    this.setState({
+      startTime: dateString[0],
+      endTime: dateString[1],
+    });
+  };
+  changeCourseName = (e) => {
+    const { target } = e;
+    this.setState({
+      courseName: target.value,
+    });
+  };
+  changeCourseCode = (e) => {
+    const { target } = e;
+    this.setState({
+      courseCode: target.value,
+    });
+  };
+  search = () => {
+    const { courseName, courseCode } = this.state;
+    console.warn('搜索', courseName, courseCode);
+  };
+  reset = () => {
+    this.setState({
+      courseName: '',
+      courseCode: '',
+      rangePickerKey: new Date(),
+    });
+  };
   render() {
+    const { courseName, courseCode, rangePickerKey } = this.state;
     return (
       <div className="question_manage_wrapper">
         <div className="question_manage_title">题库管理</div>
         <div className="question_manage_search">
           <Form layout="inline">
             <Form.Item label="时间筛选:">
-              <RangePicker showTime />
+              <RangePicker showTime onChange={this.changeTime} key={rangePickerKey} />
             </Form.Item>
             <Form.Item label="课程名称:">
-              <Input />
+              <Input placeholder="请输入课程名称" value={courseName} onChange={this.changeCourseName} />
             </Form.Item>
             <Form.Item label="课程编码:">
-              <Input />
+              <Input placeholder="请输入课程编码" value={courseCode} onChange={this.changeCourseCode} />
             </Form.Item>
             <Form.Item>
               <Space>
-                <Button type="primary" htmlType="submit">
+                <Button type="primary" htmlType="submit" onClick={this.search}>
                   查询
                 </Button>
-                <Button>重置</Button>
+                <Button onClick={this.reset}>重置</Button>
               </Space>
             </Form.Item>
           </Form>
