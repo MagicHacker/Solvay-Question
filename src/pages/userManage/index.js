@@ -270,7 +270,13 @@ export default class UserManage extends Component {
           </Form>
         </div>
         <Table className="user_manage_table" dataSource={this.dataSource} columns={this.columns} />
-        <Modal title="添加用户" visible={isModalVisible} onOk={this.confirm} onCancel={this.handleCancel}>
+        <Modal
+          title="添加用户"
+          visible={isModalVisible}
+          onOk={this.confirm}
+          onCancel={this.handleCancel}
+          centered={true}
+        >
           <Form>
             <Form.Item label="姓名:">
               <Input placeholder="请输入姓名" value={addUserName} onChange={this.changeAddUserName} />
