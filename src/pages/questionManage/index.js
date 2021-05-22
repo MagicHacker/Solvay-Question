@@ -73,18 +73,42 @@ export default class QuestionManage extends Component {
         title: '操作',
         key: 'action',
         align: 'center',
-        render: () => {
+        render: (text, record) => {
           return (
-            <div style={{ display: 'flex', justifyContent: 'space-around' }}>
-              <a>模块管理</a>
-              <a>查看</a>
-              <a>编辑</a>
-            </div>
+            <Space>
+              <Button
+                size={{ size: 'small' }}
+                type="text"
+                danger
+                onClick={() => {
+                  this.handleModelManage(record);
+                }}
+              >
+                模块管理
+              </Button>
+              <Button size={{ size: 'small' }} type="text" danger>
+                查看
+              </Button>
+              <Button size={{ size: 'small' }} type="text" danger>
+                编辑
+              </Button>
+            </Space>
           );
         },
       },
     ];
   }
+  handleModelManage = (record) => {
+    const { history } = this.props;
+    const { courseCode, courseName } = record;
+    history.push({
+      pathname: '/homepage/modelManage',
+      state: {
+        courseCode,
+        courseName,
+      },
+    });
+  };
   changeTime = (date, dateString) => {
     this.setState({
       startTime: dateString[0],
