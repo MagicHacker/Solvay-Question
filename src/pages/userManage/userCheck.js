@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Breadcrumb, Row, Col, Table } from 'antd';
-import { ArrowLeftOutlined } from '@ant-design/icons';
+import { Row, Col, Table } from 'antd';
+import PagesHeader from '../../components/pages-header';
 import './userCheck.less';
 export default class UserCheck extends Component {
   constructor(props) {
@@ -49,28 +49,13 @@ export default class UserCheck extends Component {
       },
     ];
   }
-  goBack = () => {
-    const { history } = this.props;
-    history.goBack();
-  };
   render() {
     const {
       location: { state },
     } = this.props;
     return (
       <div className="user_check_wrapper">
-        <div className="user_check_title">
-          <Breadcrumb style={{ fontSize: 24 }}>
-            <Breadcrumb.Item>
-              <a href="">用户管理</a>
-            </Breadcrumb.Item>
-            <Breadcrumb.Item>查看用户</Breadcrumb.Item>
-          </Breadcrumb>
-          <div style={{ cursor: 'pointer' }} onClick={this.goBack}>
-            <ArrowLeftOutlined />
-            返回
-          </div>
-        </div>
+        <PagesHeader title={{ first: '用户管理', second: '查看用户' }} />
         <div className="user_check_detail">
           <span style={{ fontSize: 20, fontWeight: 600 }}>用户信息</span>
           <Row gutter={20}>
