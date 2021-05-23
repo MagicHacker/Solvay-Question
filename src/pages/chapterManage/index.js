@@ -65,12 +65,30 @@ export default class ChapterManage extends Component {
         title: '操作',
         key: 'action',
         align: 'center',
-        render: () => {
-          return <a>章节管理</a>;
+        render: (text, record) => {
+          return (
+            <Button
+              size={{ size: 'small' }}
+              type="text"
+              danger
+              onClick={() => {
+                this.handleChapterCheck(record);
+              }}
+            >
+              章节管理
+            </Button>
+          );
         },
       },
     ];
   }
+  handleChapterCheck = (record) => {
+    const { history } = this.props;
+    // const { courseCode, courseName } = record;
+    history.push({
+      pathname: '/homepage/chapterCheck',
+    });
+  };
   changeTime = (date, dateString) => {
     this.setState({
       startTime: dateString[0],

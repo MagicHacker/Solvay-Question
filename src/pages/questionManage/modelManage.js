@@ -19,7 +19,7 @@ const ModelSearch = () => {
     </Form>
   );
 };
-export default class modelManage extends Component {
+export default class ModelManage extends Component {
   constructor(props) {
     super(props);
     this.state = {};
