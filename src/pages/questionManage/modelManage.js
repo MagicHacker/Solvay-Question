@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import PagesHeader from '../../components/pages-header';
-import { Tabs, Form, Input, Space, Button } from 'antd';
+import { Tabs, Form, Input, Space, Button, Card } from 'antd';
 import './modelManage.less';
 const { TabPane } = Tabs;
 
 const ModelSearch = () => {
   return (
-    <Form>
-      <Form.Item>
-        <Input />
+    <Form layout="inline">
+      <Form.Item label="章节筛选:">
+        <Input placeholder="请输入章节" />
       </Form.Item>
       <Form.Item>
         <Space>
@@ -36,15 +36,19 @@ export default class modelManage extends Component {
           <Tabs defaultActiveKey="1" type="card">
             <TabPane tab="全部题库" key="1">
               <ModelSearch />
+              <Card title="题号">全部题库</Card>
             </TabPane>
             <TabPane tab="每日练习" key="2">
               <ModelSearch />
+              <Card title="题号">每日练习</Card>
             </TabPane>
             <TabPane tab="真题" key="3">
               <ModelSearch />
+              <Card title="题号">真题</Card>
             </TabPane>
             <TabPane tab="模拟题" key="4">
               <ModelSearch />
+              <Card title="题号">模拟题</Card>
             </TabPane>
           </Tabs>
         </div>
