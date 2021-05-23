@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { HashRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { ConfigProvider } from 'antd';
 import './index.less';
 import zhCN from 'antd/lib/locale/zh_CN';
